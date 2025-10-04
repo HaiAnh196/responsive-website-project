@@ -1,0 +1,74 @@
+/* Base styles for mobile (mobile-first) */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr; /* One column */
+    grid-gap: 10px; /* 10px gap between rows and columns */
+    padding: 10px;
+}
+
+figure {
+    border-radius: 5px;
+    overflow: hidden; /* Ensures circular figures work well */
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Tablet View - Media Query for Screens >= 772px */
+@media screen and (min-width: 772px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+    }
+
+    figure {
+        border-radius: 50%; /* Circular border */
+    }
+
+    .container > div:last-child {
+        grid-column: span 2; /* Last figure takes up both columns */
+    }
+}
+
+/* Large Screen View - Media Query for Screens >= 992px */
+@media screen and (min-width: 992px) {
+    .container {
+        grid-template-columns: repeat(3, 1fr); /* Three columns */
+    }
+
+    figure {
+        border-radius: 0; /* Remove border radius */
+    }
+
+    .container > div:nth-child(3n) {
+        grid-column: span 2; /* Every third figure takes up both columns */
+    }
+}
+
+/* Prefers-reduced-motion - Remove smooth scroll behavior */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto; /* Disable smooth scrolling */
+    }
+}
+
+/* Dark Mode - Media Query for Dark Color Scheme */
+@media (prefers-color-scheme: dark) {
+    figure {
+        background-color: #333; /* Dark background for figures */
+        color: #f0e68c; /* Light font color (yellow-ish) */
+        border: 2px solid black; /* Black border */
+    }
+}
