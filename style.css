@@ -1,74 +1,113 @@
-/* Base styles for mobile (mobile-first) */
+/* Base Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    display: grid;
-    grid-template-columns: 1fr; /* One column */
-    grid-gap: 10px; /* 10px gap between rows and columns */
-    padding: 10px;
-}
-
-figure {
-    border-radius: 5px;
-    overflow: hidden; /* Ensures circular figures work well */
-}
-
-img {
-    width: 100%;
-    height: auto;
-}
-
-p {
-    font-size: 1.2rem;
+    background-color: #fff;
     color: #333;
 }
 
-/* Tablet View - Media Query for Screens >= 772px */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+/* Container for the images */
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+    padding: 20px;
+}
+
+figure {
+    margin: 0;
+}
+
+figcaption {
+    text-align: center;
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* Mobile View - One Column Grid (Default Mobile-First) */
+@media screen and (max-width: 771px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    figure {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Tablet View - Two Columns (>= 772px) */
 @media screen and (min-width: 772px) {
     .container {
-        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        grid-template-columns: repeat(2, 1fr);
     }
 
     figure {
-        border-radius: 50%; /* Circular border */
+        border-radius: 50%; /* Circular figures */
     }
 
-    .container > div:last-child {
-        grid-column: span 2; /* Last figure takes up both columns */
+    figure:last-child {
+        grid-column: span 2; /* Last figure takes both columns */
     }
 }
 
-/* Large Screen View - Media Query for Screens >= 992px */
+/* Large Screen View - Three Columns (>= 992px) */
 @media screen and (min-width: 992px) {
     .container {
-        grid-template-columns: repeat(3, 1fr); /* Three columns */
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    figure:nth-child(3n) {
+        grid-column: span 2; /* Every third figure takes up two columns */
     }
 
     figure {
-        border-radius: 0; /* Remove border radius */
-    }
-
-    .container > div:nth-child(3n) {
-        grid-column: span 2; /* Every third figure takes up both columns */
+        border-radius: 0; /* Remove border radius for large screens */
     }
 }
 
-/* Prefers-reduced-motion - Remove smooth scroll behavior */
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto; /* Disable smooth scrolling */
-    }
-}
-
-/* Dark Mode - Media Query for Dark Color Scheme */
+/* Dark Mode - If User Prefers Dark Theme */
 @media (prefers-color-scheme: dark) {
+    body {
+        background-color: #333;
+        color: #eee;
+    }
+
     figure {
-        background-color: #333; /* Dark background for figures */
-        color: #f0e68c; /* Light font color (yellow-ish) */
-        border: 2px solid black; /* Black border */
+        background-color: #444;
+        border: 1px solid #000;
+    }
+
+    figcaption {
+        color: #ffeb3b; /* Lighter color for text in dark mode */
+    }
+}
+
+/* Reduced Motion - If User Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        scroll-behavior: auto; /* Disable smooth scrolling */
     }
 }
